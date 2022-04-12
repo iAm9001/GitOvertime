@@ -1,13 +1,11 @@
 ﻿using LibGit2Sharp;
+using Newtonsoft.Json;
 
 namespace GitOvertime.Models;
 
-/// <summary>   A data Model for the hours worked. </summary>
-///
-/// <remarks>   Brand, 4/12/2022. </remarks>
-
 public class HoursWorkedModel
 {
+    [JsonIgnore]
     public Commit InnerCommit { get; set; }
     
     /// <summary>   Gets or sets the name of the repository. </summary>

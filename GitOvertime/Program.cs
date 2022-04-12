@@ -25,6 +25,7 @@ var gitter = new BetweenHours();
 
 var report = gitter.GetCommitsBetweenHours(@"C:\Users\brand\source\repos\Sequence Diagram Generator", DateTime.Today.AddYears(-1), 8, 16);
 
+var asGrouped = report.GetAsGroupedDates();
 
 
 Console.WriteLine("Execution completed.");

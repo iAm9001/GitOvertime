@@ -1,4 +1,5 @@
-﻿using LibGit2Sharp;
+﻿using System.Text.Json.Serialization;
+using LibGit2Sharp;
 
 namespace GitOvertime.Models;
 
@@ -8,7 +9,7 @@ public class HoursWorkedReport
     private readonly int _startTime;
     private readonly int _endTime;
     private readonly IEnumerable<HoursWorkedModel> _commits;
-    private IEnumerable<IGrouping<DateTime, HoursWorkedModel>> _commitsByDate;
+    private IEnumerable<HoursWorkedModelCollection>? _commitsByDate;
 
     public HoursWorkedReport(int startTime, int endTime, IEnumerable<HoursWorkedModel> commits)
     {
@@ -25,9 +26,11 @@ public class HoursWorkedReport
     /// <summary>   Gets or sets the commits. </summary>
     ///
     /// <value> The commits. </value>
+    [JsonIgnore]
     public IEnumerable<HoursWorkedModel> Commits => _commits;
 
-    private IEnumerable<IGrouping<DateTime, HoursWorkedModel>> CommitsByDate
+    [JsonIgnore]
+    private IEnumerable<IGrouping<DateTime, HoursWorkedModel>>? CommitsByDate
     {
         get
         {
@@ -42,9 +45,20 @@ public class HoursWorkedReport
     
     // public IGrouping<DateTime, HoursWorkedModel> Get
 
-    public IEnumerable<IGrouping<DateTime,HoursWorkedModel>> GetAsGroupedDates()
+    public IEnumerable<HoursWorkedModelCollection>? GetAsGroupedDates()
     {
+
         var results = this.Commits?.GroupBy(g => g.DateOfCommitCalendarDay);
+
+        var returnObj = new List<HoursWorkedModelCollection>();
+        foreach (var date in results)
+        {
+            var grouping = new HoursWorkedModelCollection()
+            {
+                
+            };
+        }
+        
         return results;
     }
 }
