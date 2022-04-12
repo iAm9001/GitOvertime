@@ -1,5 +1,6 @@
 ﻿using GitOvertime.Models;
 using LibGit2Sharp;
+using Newtonsoft.Json;
 
 namespace GitOvertime;
 
@@ -43,8 +44,8 @@ public class BetweenHours
                 };
                 worked.Add(model);
             }
-            
-            
+
+            Console.WriteLine(JsonConvert.SerializeObject(worked));
         }
     }
 }
