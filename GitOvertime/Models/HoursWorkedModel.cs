@@ -1,4 +1,6 @@
-﻿namespace GitOvertime.Models;
+﻿using LibGit2Sharp;
+
+namespace GitOvertime.Models;
 
 /// <summary>   A data Model for the hours worked. </summary>
 ///
@@ -6,6 +8,8 @@
 
 public class HoursWorkedModel
 {
+    public Commit InnerCommit { get; set; }
+    
     /// <summary>   Gets or sets the name of the repository. </summary>
     ///
     /// <value> The name of the repository. </value>

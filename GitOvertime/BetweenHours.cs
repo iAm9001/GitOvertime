@@ -19,10 +19,9 @@ public class BetweenHours
     /// <param name="h1">           The first int. </param>
     /// <param name="h2">           The second int. </param>
 
-    public void GetCommitsBetweenHours(string repoPath, DateTime oldestDate, int h1, int h2)
+    public HoursWorkedReport GetCommitsBetweenHours(string repoPath, DateTime oldestDate, int h1, int h2)
     {
         List<HoursWorkedModel> worked = new List<HoursWorkedModel>();
-        HoursWorkedReport report = new HoursWorkedReport();
         using (var repo = new Repository(repoPath))
         {
             var afterHoursOnly =
@@ -34,18 +33,21 @@ public class BetweenHours
             {
                 var model = new HoursWorkedModel()
                 {
-                    Branch = repo.Branches.FirstOrDefault(b => b.Commits.Contains(c)).FriendlyName,
+                    Branch = repo.Branches.First(b => b.Commits.Contains(c)).FriendlyName,
                     Notes = c.Message,
                     AuthorEmail = c.Author.Email,
                     AuthorName = c.Author.Name,
                     CommitId = c.Id.Sha,
                     RepositoryName = repoPath,
-                    DateOfCommit = c.Committer.When
+                    DateOfCommit = c.Committer.When,
+                    InnerCommit = c
                 };
                 worked.Add(model);
             }
 
-            Console.WriteLine(JsonConvert.SerializeObject(worked));
+            HoursWorkedReport report = new HoursWorkedReport(h1, h2, worked);
+            Console.WriteLine(JsonConvert.SerializeObject(report, Formatting.Indented));
+            return report;
         }
     }
 }

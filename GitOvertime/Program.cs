@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using GitOvertime;
+using GitOvertime.Models;
 
 /// <summary>   Initializes a new instance of the <see cref="Program"/> class. </summary>
 ///
@@ -22,4 +23,8 @@ var gitter = new BetweenHours();
 /// <param name="parameter2">   The second parameter. </param>
 /// <param name="parameter3">   The third parameter. </param>
 
-gitter.GetCommitsBetweenHours(@"C:\Users\brand\source\repos\Sequence Diagram Generator", DateTime.Today.AddYears(-1), 8, 16);
+var report = gitter.GetCommitsBetweenHours(@"C:\Users\brand\source\repos\Sequence Diagram Generator", DateTime.Today.AddYears(-1), 8, 16);
+
+
+
+Console.WriteLine("Execution completed.");
