@@ -28,7 +28,16 @@ public class HoursWorkedModel
     ///
     /// <value> The date of commit. </value>
 
-    public DateTime? DateOfCommit { get; set; }
+    public DateTimeOffset DateOfCommit { get; set; }
+
+    /// <summary>   Gets the date of commit calendar day. </summary>
+    ///
+    /// <value> The date of commit calendar day. </value>
+
+    public DateTime DateOfCommitCalendarDay
+    {
+        get { return this.DateOfCommit.Date; }
+    }
 
     /// <summary>   Gets or sets the notes. </summary>
     ///

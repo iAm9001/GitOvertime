@@ -22,4 +22,4 @@ var gitter = new BetweenHours();
 /// <param name="parameter2">   The second parameter. </param>
 /// <param name="parameter3">   The third parameter. </param>
 
-gitter.GetCommitsBetweenHours(@"C:\Users\brand\source\repos\Sequence Diagram Generator", 8, 16);
+gitter.GetCommitsBetweenHours(@"C:\Users\brand\source\repos\Sequence Diagram Generator", DateTime.Today.AddYears(-1), 8, 16);
