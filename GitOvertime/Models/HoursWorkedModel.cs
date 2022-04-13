@@ -3,11 +3,15 @@ using Newtonsoft.Json;
 
 namespace GitOvertime.Models;
 
+/// <summary>   A data Model for the hours worked. </summary>
+///
+/// <remarks>   Brand, 4/13/2022. </remarks>
+
 public class HoursWorkedModel
 {
     [JsonIgnore]
     public Commit InnerCommit { get; set; }
-    
+
     /// <summary>   Gets or sets the name of the repository. </summary>
     ///
     /// <value> The name of the repository. </value>
