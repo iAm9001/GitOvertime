@@ -48,13 +48,8 @@ var report = gitter.GetCommitsBetweenHours(oldest, workStartHour, workEndHour, r
 /// <summary>   As grouped. </summary>
 var asGrouped = report.GetAsGroupedDates();
 
-/// <summary>   Initializes a new instance of the <see cref="Program"/> class. </summary>
-///
-/// <remarks>   Brand, 4/13/2022. </remarks>
-///
-/// <param name="commits..."">  The commits...". </param>
-
 Console.WriteLine("Evaluating each collection of commits...");
+
 /// <summary>   The report final. </summary>
 List<object> reportFinal = new List<object>();
 

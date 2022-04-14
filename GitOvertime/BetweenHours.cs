@@ -56,4 +56,18 @@ public class BetweenHours
         Console.WriteLine(JsonConvert.SerializeObject(report, Formatting.Indented));
         return report;
     }
+
+    public void GetCommitsBetweenHours(string path)
+    {
+        using (var repo = new Repository(path))
+        {
+            var limit = DateTime.Now.AddDays(365);
+            var commits = repo.Commits.Where(c => c.Committer.When > limit);
+
+            var groupedByDateThenByAuthor =
+                commits.GroupBy(g => g.Committer.When, (x, y) =>  y.GroupBy(n => n.Author.Email, z => z));
+            
+            groupedByDateThenByAuthor.FirstOrDefault(f => f.Select(z => z.FirstOrDefault().K))
+        }
+    }
 }
